@@ -11,16 +11,9 @@ export const getTrendingGifs = () => (dispatch, getState) => {
 
     client.trending('gifs', {limit: 20})
         .then((response) => {
-            console.log(response.data);
-            const trendingGifs = response.data.map((gif) => {
-                return {
-                    id: gif.id,
-                    url: gif.url,
-                    content: gif.images.original.gif_url
-                }
-            });
-
-            dispatch(setTrendingGifs(trendingGifs));
+            const gifs = getGifsFromApiResponse(response);
+            dispatch(setGifsToState(gifs));
+            dispatch(setGifHeadline('Trending Gifs'));
             dispatch(setIsFetchingData(false));
         })
         .catch((err) => {
@@ -29,5 +22,30 @@ export const getTrendingGifs = () => (dispatch, getState) => {
         });
 
 };
+export const setGifHeadline = createAction('SET_HEADLINE', headline => headline);
+export const setGifsToState = createAction('SET_GIFS', gifs => gifs);
 
-export const setTrendingGifs = createAction('SET_TRENDING_GIFS', gifs => gifs);
+export const searchForGif = (query) => (dispatch, getState) => {
+    dispatch(setIsFetchingData(true));
+
+    client.search('gifs', {q: query})
+        .then((response) => {
+            const gifs = getGifsFromApiResponse(response);
+            dispatch(setGifsToState(gifs));
+            dispatch(setGifHeadline('Search Results'));
+            dispatch(setIsFetchingData(false));
+        })
+        .catch((err) => {
+            dispatch(setIsFetchingData(false));
+        })
+}
+
+function getGifsFromApiResponse(response) {
+    return response.data.map((gif) => {
+        return {
+            id: gif.id,
+            url: gif.url,
+            content: gif.images.original.gif_url
+        }
+    });
+}

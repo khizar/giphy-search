@@ -3,7 +3,8 @@ import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 
 import styles from './App.pcss';
-import Trending from './../TrendingView/Trending';
+import GifListing from '../TrendingView/GifListing';
+import SearchBar from './../SearchBar/SearchBar';
 
 class App extends React.Component {
 
@@ -12,10 +13,15 @@ class App extends React.Component {
     }
 
     render() {
-        const {isFetchingData, trendingGifs} = this.props;
+        const {isFetchingData, gifsList, searchForGif, headline} = this.props;
         return (
-            <div className="container">
-                <Trending isFetchingData={isFetchingData} trendingGifs={trendingGifs}/>
+            <div styleName='app'>
+                <SearchBar searchForGif={searchForGif}/>
+                <GifListing
+                    isFetchingData={isFetchingData}
+                    gifsList={gifsList}
+                    headline={headline}
+                />
             </div>
         );
     }
@@ -24,7 +30,9 @@ class App extends React.Component {
 App.propTypes = {
     fetchTrendingGifs: PropTypes.func,
     isFetchingData: PropTypes.bool,
-    trendingGifs: PropTypes.array,
+    gifsList: PropTypes.array,
+    searchForGif: PropTypes.func,
+    headline: PropTypes.string
 };
 
 export default CSSModules(App, styles, { allowMultiple: true });

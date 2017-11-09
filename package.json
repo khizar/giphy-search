@@ -64,7 +64,7 @@
     "mocha": "^4.0.1",
     "mock-css-modules": "^1.0.0",
     "postcss": "^6.0.9",
-    "postcss-bem": "^0.4.1",
+    "postcss-bem-fix": "^1.0.1",
     "postcss-calc": "^6.0.0",
     "postcss-color-function": "^4.0.0",
     "postcss-custom-media": "^6.0.0",

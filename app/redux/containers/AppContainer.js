@@ -1,19 +1,22 @@
 import { connect } from 'react-redux';
 
 import App from '../../components/App/App';
-import {getTrendingGifs} from '../actions/AppActions';
-import {getIsFetchingData, getTrendingGifsFromState} from '../selectors/selectors';
+import {getTrendingGifs, searchForGif} from '../actions/AppActions';
+import {getIsFetchingData, getGifsFromState, getHeadline} from '../selectors/selectors';
 
 const mapStateToProps = state => ({
-    trendingGifs: getTrendingGifsFromState(state),
+    gifsList: getGifsFromState(state),
     isFetchingData: getIsFetchingData(state),
-})
+    headline: getHeadline(state)
+});
 
 const mapDispatchToProps = dispatch => ({
     fetchTrendingGifs: () => {
         dispatch(getTrendingGifs());
     },
-
+    searchForGif: (query) => {
+        dispatch(searchForGif(query));
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
