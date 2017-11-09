@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import AppReducer from './components/AppReducer';
+import AppReducer from './redux/reducers/AppReducer';
 
 const RootReducer = combineReducers({
-    testReducer: AppReducer
+    giphys: AppReducer
 });
 
 export default RootReducer;
