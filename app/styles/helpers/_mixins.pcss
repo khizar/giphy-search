@@ -47,33 +47,6 @@
 
 
 
-
-/*GRID RELATED*/
-@define-mixin container $margin: var(--margin-desktop) {
-  max-width: var(--container-max-width);
-  /*min-width: 0;*/
-  /*min-width: var(--container-max-width);*/
-  /*width: 100%;*/
-
-  margin-right: auto;
-  margin-left: auto;
-
-  padding-left: $margin;
-  padding-right: $margin;
-}
-
-
-
-@define-mixin grid $display: var(--default-grid-display), $direction: var(--default-grid-direction), $justify-content: var(--default-grid-justify-content), $align-items: var(--default-grid-align-items), $wrap: var(--default-grid-wrap),  $align-content: var(--default-grid-align-content) {
-  display: $display;
-  flex-direction: $direction;
-  justify-content: $justify-content;
-  align-items: $align-items;
-  flex-wrap: $wrap;
-  align-content: $align-content;
-}
-
-
 @define-mixin responsive-invisibility{
   display: none !important;
 }

@@ -9,7 +9,7 @@ export const setIsFetchingData = createAction('SET_IS_FETCHING_DATA', isFetching
 export const getTrendingGifs = () => dispatch => {
     dispatch(setIsFetchingData(true));
 
-    client.trending('gifs', {limit: 20})
+    return client.trending('gifs', {limit: 20})
         .then((response) => {
             const gifs = getGifsFromApiResponse(response);
             dispatch(setGifsToState(gifs));
@@ -28,7 +28,7 @@ export const setGifsToState = createAction('SET_GIFS', gifs => gifs);
 export const searchForGif = (query) => dispatch => {
     dispatch(setIsFetchingData(true));
 
-    client.search('gifs', {q: query})
+    return client.search('gifs', {q: query})
         .then((response) => {
             const gifs = getGifsFromApiResponse(response);
             dispatch(setGifsToState(gifs));

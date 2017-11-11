@@ -25,6 +25,9 @@ const GifListing = ({gifsList, isFetchingData, headline, togglePopup}) =>
         </section>
     </section>;
 
+GifListing.defaultProps = {
+    gifsList: []
+}
 
 GifListing.propTypes = {
     gifsList: PropTypes.array,

@@ -54,8 +54,13 @@ class App extends React.Component {
     }
 }
 
+App.defaultProps = {
+    fetchTrendingGifs: () => '',
+
+};
+
 App.propTypes = {
-    fetchTrendingGifs: PropTypes.func,
+    fetchTrendingGifs: PropTypes.func.isRequired,
     isFetchingData: PropTypes.bool,
     gifsList: PropTypes.array,
     searchForGif: PropTypes.func,
