@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
-import App from './redux/containers/AppContainer';
+import App from './containers/AppContainer';
 import CreateStore from './CreateStore';
 import RootReducer from './RootReducer';
 
@@ -30,5 +30,5 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-    module.hot.accept('./redux/containers/AppContainer', () => render(<App/>));
+    module.hot.accept('./containers/AppContainer', () => render(<App/>));
 }

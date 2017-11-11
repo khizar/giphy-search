@@ -1,0 +1,107 @@
+@import "../../styles/base/_colors.pcss";
+
+@b popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  @e popup_inner {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    background: var(--gray-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @e search-button {
+    font-size: 22px;
+    border: 0;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+
+  }
+  @e search-icon {
+    width: 40px;
+    height: 40px;
+    background-image: url(./../../assets/twiiter_icon.svg);
+    background-size: 100%;
+    display: inline-block;
+  }
+
+  @e share-link-input {
+    height: 40px;
+    width: 60%;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  @e gif {
+    margin: auto;
+    max-height: 75%;
+  }
+
+  @e share-box {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    padding: 5px;
+    margin-top: 10px;
+  }
+
+  @e close-button {
+    background: #0cf;
+    -webkit-appearance: none;
+    margin: 10px auto;
+    height: 40px;
+    width: 100px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    border: 0;
+  }
+
+}
+
+@media all and (min-width: 500px) {
+  @b popup {
+    @e popup_inner {
+      left: 10%;
+      right: 10%;
+    }
+  }
+}
+
+@media all and (min-width: 768px) {
+  @b popup {
+    @e popup_inner {
+      left: 20%;
+      right: 20%;
+    }
+  }
+}
+
+@media all and (min-width: 1024px) {
+  @b popup {
+    @e popup_inner {
+      left: 25%;
+      right: 25%;
+    }
+  }
+}

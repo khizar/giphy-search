@@ -7,21 +7,21 @@ import GifObject from './../GifObject/GifObject';
 
 const spinner = require('./../../assets/spinner.svg');
 
-const  _renderTrendingGifs = (trendingGifs) => {
+const  _renderGifs = (trendingGifs, togglePopup) => {
     return trendingGifs.map((gif) => {
-        return <GifObject gif={gif} key={gif.id}/>;
+        return <GifObject gif={gif} key={gif.id} togglePopup={togglePopup}/>;
     })
 };
 
-const GifListing = ({gifsList, isFetchingData, headline}) =>
-    <section styleName="trending">
-        <label styleName='trending__headline'>{headline}</label>
+const GifListing = ({gifsList, isFetchingData, headline, togglePopup}) =>
+    <section styleName="gifList">
+        <label styleName='gifList__headline'>{headline}</label>
 
-        <section styleName='trending__content'>
+        <section styleName='gifList__content'>
         {isFetchingData &&
-            <img styleName='trending__spinner' src={spinner}/>
+            <img styleName='gifList__spinner' src={spinner}/>
         }
-        {!isFetchingData && _renderTrendingGifs(gifsList)}
+        {!isFetchingData && _renderGifs(gifsList, togglePopup)}
         </section>
     </section>;
 
@@ -30,6 +30,7 @@ GifListing.propTypes = {
     gifsList: PropTypes.array,
     isFetchingData: PropTypes.bool,
     headline: PropTypes.string,
+    togglePopup: PropTypes.func
 };
 
 export default CSSModules(GifListing, styles, {allowMultiple: true});

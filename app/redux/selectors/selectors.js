@@ -9,3 +9,7 @@ export function getIsFetchingData(state) {
 export function getHeadline(state) {
     return state.giphys.headline;
 }
+
+export function getGifById(id, state) {
+    return state.giphys.gifs.find((gif)=> id === gif.id);
+}

@@ -5,11 +5,29 @@ import PropTypes from 'prop-types';
 import styles from './App.pcss';
 import GifListing from '../TrendingView/GifListing';
 import SearchBar from './../SearchBar/SearchBar';
+import SharePopupContainer from './../../containers/SharePopupContainer';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            sharePopupOpen: false,
+            gifToBeSharedId: null,
+        };
+
+        this.toggleSharePopupState = this.toggleSharePopupState.bind(this);
+    }
 
     componentDidMount() {
         this.props.fetchTrendingGifs();
+    }
+
+    toggleSharePopupState(id) {
+        this.setState({
+            sharePopupOpen: !this.state.sharePopupOpen,
+            gifToBeSharedId: id,
+        });
     }
 
     render() {
@@ -21,7 +39,16 @@ class App extends React.Component {
                     isFetchingData={isFetchingData}
                     gifsList={gifsList}
                     headline={headline}
+                    togglePopup={this.toggleSharePopupState}
                 />
+                {this.state.sharePopupOpen ?
+                    <SharePopupContainer
+                        text='Close Me'
+                        closePopup={this.toggleSharePopupState}
+                        id={this.state.gifToBeSharedId}
+                    />
+                    : null
+                }
             </div>
         );
     }

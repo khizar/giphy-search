@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import App from '../../components/App/App';
-import {getTrendingGifs, searchForGif} from '../actions/AppActions';
-import {getIsFetchingData, getGifsFromState, getHeadline} from '../selectors/selectors';
+import App from '../components/App/App';
+import {getTrendingGifs, searchForGif} from '../redux/actions/AppActions';
+import {getIsFetchingData, getGifsFromState, getHeadline} from '../redux/selectors/selectors';
 
 const mapStateToProps = state => ({
     gifsList: getGifsFromState(state),

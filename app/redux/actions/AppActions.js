@@ -6,7 +6,7 @@ const client = GphApiClient(GIPHY_API_KEY);
 
 export const setIsFetchingData = createAction('SET_IS_FETCHING_DATA', isFetching => isFetching);
 
-export const getTrendingGifs = () => (dispatch, getState) => {
+export const getTrendingGifs = () => dispatch => {
     dispatch(setIsFetchingData(true));
 
     client.trending('gifs', {limit: 20})
@@ -17,7 +17,7 @@ export const getTrendingGifs = () => (dispatch, getState) => {
             dispatch(setIsFetchingData(false));
         })
         .catch((err) => {
-            console.log('*** Error:');
+            console.log(err);
             dispatch(setIsFetchingData(false));
         });
 
@@ -25,7 +25,7 @@ export const getTrendingGifs = () => (dispatch, getState) => {
 export const setGifHeadline = createAction('SET_HEADLINE', headline => headline);
 export const setGifsToState = createAction('SET_GIFS', gifs => gifs);
 
-export const searchForGif = (query) => (dispatch, getState) => {
+export const searchForGif = (query) => dispatch => {
     dispatch(setIsFetchingData(true));
 
     client.search('gifs', {q: query})
@@ -36,6 +36,7 @@ export const searchForGif = (query) => (dispatch, getState) => {
             dispatch(setIsFetchingData(false));
         })
         .catch((err) => {
+        console.log(err);
             dispatch(setIsFetchingData(false));
         })
 }
@@ -45,7 +46,8 @@ function getGifsFromApiResponse(response) {
         return {
             id: gif.id,
             url: gif.url,
-            content: gif.images.original.gif_url
+            content: gif.images.downsized.gif_url,
+            shortUrl: gif.bitly_url,
         }
     });
 }

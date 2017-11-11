@@ -21,7 +21,9 @@ class SearchBar extends React.Component {
     }
 
     handleSearchClick(event) {
-        this.props.searchForGif(this.state.textBoxVal);
+        if(this.state.textBoxVal){
+            this.props.searchForGif(this.state.textBoxVal);
+        }
     }
 
     handleKeyDown(event) {
